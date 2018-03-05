@@ -1,7 +1,6 @@
 useTabs: false
 printWidth: 120
 tabWidth: 2
-singleQuote: false
-trailingComma: es5
+singleQuote: true
 parser: babylon
 semi: true
