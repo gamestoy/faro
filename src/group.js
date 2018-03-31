@@ -6,12 +6,11 @@ const getPath = url => {
 };
 
 const group = (traces, maximum) => {
-  let _source, matches, x, y;
-  _source = traces.slice();
-  matches = [];
-  for (x = _source.length - 1; x >= 0; x--) {
-    let output = _source.splice(x, 1);
-    for (y = _source.length - 1; y >= 0; y--) {
+  const _source = traces.slice();
+  const matches = [];
+  for (let x = _source.length - 1; x >= 0; x--) {
+    const output = _source.splice(x, 1);
+    for (let y = _source.length - 1; y >= 0; y--) {
       if (stringSimilarity.compareTwoStrings(getPath(output[0].url), getPath(_source[y].url)) >= maximum) {
         output.push(_source[y]);
         _source.splice(y, 1);
@@ -24,5 +23,5 @@ const group = (traces, maximum) => {
 };
 
 module.exports = {
-  groupUrls: group
+  groupUrls: group,
 };
