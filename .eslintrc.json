@@ -1,0 +1,42 @@
+{
+    "env": {
+        "es6": true,
+        "node": true,
+        "browser": true,
+        "jest": true
+    },
+    "extends": ["plugin:prettier/recommended"],
+    "parserOptions": {
+        "ecmaVersion": 8,
+        "sourceType": "module"
+    },
+    "rules": {
+        "linebreak-style": [
+            "error",
+            "unix"
+        ],
+        "prefer-const": 2,
+        "no-implicit-coercion": [2, {
+            "boolean": false,
+            "number": true,
+            "string": true
+        }],
+        "no-unused-expressions": [2, {
+            "allowShortCircuit": true,
+            "allowTernary": false
+        }],
+        "no-unused-vars": [2, {
+            "vars": "all",
+            "args": "after-used",
+            "argsIgnorePattern": "(^reject$|^_$)",
+            "varsIgnorePattern": "(^_$)"
+        }],
+        "comma-dangle": [2, {
+            "arrays": "always-multiline",
+            "objects": "always-multiline",
+            "imports": "never",
+            "exports": "never",
+            "functions": "never"
+        }]
+    }
+}
