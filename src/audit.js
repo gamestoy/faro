@@ -9,7 +9,7 @@ const ResourcesStats = require('./resources-stats');
 class Audit {
   static _getBefore(data, options) {
     const metric = S.find(m => m.name === options.before && m.value, data.metrics);
-    return S.reduce(m => m.value, Number.MAX_VALUE, metric);
+    return S.maybe(Number.MAX_VALUE, m => m.value, metric);
   }
 
   static _mergeResourcesInfo(resourcesRequests, resourcesStats) {
