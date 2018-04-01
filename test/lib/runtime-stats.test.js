@@ -1,17 +1,9 @@
-const fs = require('fs');
+const { getTraces } = require('./utils');
 const DevtoolsTimelineModel = require('devtools-timeline-model');
-const V8RuntimeStats = require('../../src/runtime-stats');
-
-const getTraces = () => {
-  return new Promise(resolve => {
-    fs.readFile('../resources/traces.json', (err, data) => {
-      resolve(JSON.parse(data));
-    });
-  });
-};
+const V8RuntimeStats = require('../../lib/runtime-stats');
 
 test('runtime traces', async () => {
-  const traces = await getTraces();
+  const traces = await getTraces('../resources/traces.json');
   const runtime = V8RuntimeStats.parse(new DevtoolsTimelineModel(traces), Number.MAX_VALUE);
   expect(runtime.parse).toBe(787);
   expect(runtime.compile).toBe(956);
