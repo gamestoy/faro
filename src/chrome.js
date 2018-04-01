@@ -39,34 +39,6 @@ class Chrome {
     }, type);
   }
 
-  async _createMainDocumentMetrics(page) {
-    return await page.evaluate(() => {
-        const obj = performance.timing;
-        const navigationStart = obj.navigationStart;
-        const duration = obj.responseEnd - navigationStart;
-        const requestStart = obj.requestStart - navigationStart;
-        const responseStart = obj.responseStart - navigationStart;
-
-        return { duration: duration, requestStart: requestStart, responseStart: responseStart };
-      });
-  }
-
-  async _createResourceEntries(page) {
-    return await page.evaluate(() =>
-      performance.getEntriesByType('resource').map(e => {
-        return {
-          name: e.name,
-          value: e.startTime,
-          duration: e.duration,
-          transferSize: e.transferSize,
-          requestStart: e.requestStart,
-          responseEnd: e.responseEnd,
-          responseStart: e.responseStart,
-        };
-      })
-    );
-  }
-
   static async _getMetricsFromDevtool(client) {
     const ms = await client.send('Performance.getMetrics');
     const fmp = ms.metrics.find(x => x.name === 'FirstMeaningfulPaint').value;
@@ -86,9 +58,7 @@ class Chrome {
     const devtoolMetrics = await Chrome._getMetricsFromDevtool(client);
     const marks = await this._createMetricFromPerformanceEntries(page, 'mark');
     const paintMetrics = await this._createMetricFromPerformanceEntries(page, 'paint');
-    const mainDocument = await this._createMainDocumentMetrics(page);
-    const resources = await this._createResourceEntries(page);
-    return devtoolMetrics.concat(paintMetrics, marks, resources, mainDocument);
+    return devtoolMetrics.concat(paintMetrics, marks);
   }
 
   static async _withBrowser(f) {

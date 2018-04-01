@@ -1,20 +1,23 @@
 const { create, env } = require('sanctuary');
 const S = create({ checkTypes: false, env });
 const { EventType, EventCategory, UserTiming } = require('./events');
-const R = require("ramda");
+const R = require('ramda');
 
 class ResourcesRequests {
   static parse(events, before) {
     const mainThreadEvents = events.timelineModel().mainThreadEvents();
     const initTime = ResourcesRequests._findNavigationStart(mainThreadEvents);
-    return S.chain(it => ResourcesRequests._buildValidResourcesRequests(mainThreadEvents, before, it, mainThreadEvents), initTime);
+    return S.chain(
+      it => ResourcesRequests._buildValidResourcesRequests(mainThreadEvents, before, it, mainThreadEvents),
+      initTime
+    );
   }
 
   static _partitionEventsByMainRequest(resourceEvents) {
     return S.map(h => {
       const requestId = h.args.data.requestId;
       const resources = R.partition(r => r.args.data.requestId === requestId, resourceEvents);
-      return {mainDocument: resources[0], resources: resources[1]};
+      return { mainDocument: resources[0], resources: resources[1] };
     }, S.head(resourceEvents));
   }
 
@@ -74,11 +77,7 @@ class ResourcesRequests {
   }
 
   static _getTiming(start, response, finish) {
-    return S.maybe(
-      {},
-      t => ResourcesRequests._convertTiming(t, start, finish),
-      S.toMaybe(response.args.data.timing)
-    );
+    return S.maybe({}, t => ResourcesRequests._convertTiming(t, start, finish), S.toMaybe(response.args.data.timing));
   }
 
   static _convertTrace(start, response, finish, initTime) {
