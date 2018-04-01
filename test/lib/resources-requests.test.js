@@ -1,19 +1,11 @@
-const fs = require('fs');
+const { getTraces } = require('./utils');
 const { create, env } = require('sanctuary');
 const S = create({ checkTypes: false, env });
 const DevtoolsTimelineModel = require('devtools-timeline-model');
-const ResourcesRequests = require('../../src/resources-requests');
-
-const getTraces = () => {
-  return new Promise(resolve => {
-    fs.readFile('../resources/traces.json', (err, data) => {
-      resolve(JSON.parse(data));
-    });
-  });
-};
+const ResourcesRequests = require('../../lib/resources-requests');
 
 test('timeline', async () => {
-  const traces = await getTraces();
+  const traces = await getTraces('../resources/traces.json');
   const resources = ResourcesRequests.parse(new DevtoolsTimelineModel(traces), Number.MAX_VALUE);
   const timeline = S.fromMaybe([], resources);
   expect(timeline.length).toBe(132);

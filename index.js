@@ -1,4 +1,4 @@
-const Audit = require('../src/audit');
+const Audit = require('./lib/audit');
 const argv = require('yargs')
   .usage('Usage: $0 --url=<url> [options]')
   .options({
@@ -14,12 +14,6 @@ const argv = require('yargs')
     before: {
       alias: 'b',
       describe: 'the metric or mark name used as limit',
-    },
-    format: {
-      alias: 'f',
-      describe: 'report format',
-      choices: ['tree', 'group', 'list'],
-      default: 'list',
     },
     cpu: {
       alias: 'c',
@@ -42,7 +36,6 @@ const argv = require('yargs')
 
 (async () => {
   const url = argv.url;
-  const format = argv.format;
   const before = argv.before;
   const path = argv.path ? argv.path : `${process.cwd()}/logs`;
   const cpu = argv.cpu;
@@ -50,7 +43,6 @@ const argv = require('yargs')
   const network = argv.network;
 
   const options = {
-    format: format,
     before: before,
     path: path,
     cpu: cpu,
