@@ -1,13 +1,12 @@
 {
-  "name": "metrics",
-  "version": "1.0.0",
-  "description": "",
-  "main": "bin/index.js",
+  "name": "faro",
+  "version": "0.0.1",
+  "description": "performance ",
   "bin": {
-    "get-metrics": "bin/index"
+    "faro": "./faro.js"
   },
   "dependencies": {
-    "puppeteer": "^1.1.1",
+    "puppeteer": "^1.1.2",
     "string-similarity": "^1.2.0",
     "yargs": "^11.0.0",
     "devtools-timeline-model": "^1.4.0",
