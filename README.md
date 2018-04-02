@@ -30,6 +30,9 @@ node faro.js "https://www.google.com"
 node faro.js "https://www.google.com" -c=4 -d=mobile -n=3g
 # Simulates a mid-range smartphone
 
+node faro.js "https://www.google.com" -b=first-meaningful-paint
+# Analyzes metrics before the first meaningful paint
+
 node faro.js "https://www.google.com" -p=<new_path>
 # Saves the report in a new folder
 ```
