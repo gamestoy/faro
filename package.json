@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "performance ",
   "bin": {
-    "faro": "./faro.js"
+    "faro": "./bin/faro.js"
   },
   "dependencies": {
     "puppeteer": "^1.1.2",

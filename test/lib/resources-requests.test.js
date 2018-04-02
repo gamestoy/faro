@@ -2,11 +2,11 @@ const { getTraces } = require('./utils');
 const { create, env } = require('sanctuary');
 const S = create({ checkTypes: false, env });
 const DevtoolsTimelineModel = require('devtools-timeline-model');
-const ResourcesRequests = require('../../lib/resources-requests');
+const { buildRequests } = require('../../lib/resources-requests');
 
 test('timeline', async () => {
   const traces = await getTraces('../resources/traces.json');
-  const resources = ResourcesRequests.parse(new DevtoolsTimelineModel(traces), Number.MAX_VALUE);
+  const resources = buildRequests(new DevtoolsTimelineModel(traces), Number.MAX_VALUE);
   const timeline = S.fromMaybe([], resources);
   expect(timeline).toHaveLength(129);
   const firstTrace = timeline[0];
