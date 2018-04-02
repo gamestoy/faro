@@ -1,12 +1,7 @@
 const Audit = require('./lib/audit');
 const argv = require('yargs')
-  .usage('Usage: $0 --url=<url> [options]')
+  .usage('Usage: $0 <url> [options]')
   .options({
-    url: {
-      alias: 'u',
-      describe: 'site url',
-      demandOption: true,
-    },
     path: {
       alias: 'p',
       describe: 'provide a path to file',
@@ -35,7 +30,7 @@ const argv = require('yargs')
   }).argv;
 
 (async () => {
-  const url = argv.url;
+  const url = argv._[0];
   const before = argv.before;
   const path = argv.path ? argv.path : `${process.cwd()}/logs`;
   const cpu = argv.cpu;
