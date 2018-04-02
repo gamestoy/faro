@@ -1,9 +1,9 @@
 const { getTraces } = require('./utils');
-const Summary = require('../../lib/summary');
+const { buildSummary } = require('../../lib/summary');
 
 test('create summary', async () => {
   const traces = await getTraces('../resources/resources.json');
-  const grouped = Summary.create(traces);
+  const grouped = buildSummary(traces);
   expect(grouped.all.transferSize).toBe(1336525);
   expect(grouped.all.decodedBodyLength).toBe(3973711);
   expect(grouped.javascript.transferSize).toBe(477640);

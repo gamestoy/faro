@@ -1,4 +1,4 @@
-const Audit = require('./lib/audit');
+const Audit = require('../lib/audit');
 const argv = require('yargs')
   .usage('Usage: $0 <url> [options]')
   .options({
@@ -29,21 +29,27 @@ const argv = require('yargs')
     },
   }).argv;
 
-(async () => {
-  const url = argv._[0];
-  const before = argv.before;
-  const path = argv.path ? argv.path : `${process.cwd()}/logs`;
-  const cpu = argv.cpu;
-  const device = argv.device;
-  const network = argv.network;
+const url = argv._[0];
+const before = argv.before;
+const path = argv.path ? argv.path : `${process.cwd()}/logs`;
+const cpu = argv.cpu;
+const device = argv.device;
+const network = argv.network;
 
-  const options = {
-    before: before,
-    path: path,
-    cpu: cpu,
-    device: device,
-    network: network,
-  };
+const options = {
+  before: before,
+  path: path,
+  cpu: cpu,
+  device: device,
+  network: network,
+};
 
-  await Audit.execute(url, options);
-})();
+new Audit(url, options)
+  .start()
+  .then(() => {
+    process.exit(0);
+  })
+  .catch(err => {
+    console.error(err);
+    process.exit(1);
+  });

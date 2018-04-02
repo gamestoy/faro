@@ -24,15 +24,15 @@ node faro.js <url>
 
 ### Examples
 ```sh
-node faro.js "https://www.google.com"
+node bin/faro.js "https://www.google.com"
 # Analizes the desktop site without throttling. The report is saved in "./logs".
 
-node faro.js "https://www.google.com" -c=4 -d=mobile -n=3g
+node bin/faro.js "https://www.google.com" -c=4 -d=mobile -n=3g
 # Simulates a mid-range smartphone
 
-node faro.js "https://www.google.com" -b=first-meaningful-paint
+node bin/faro.js "https://www.google.com" -b=first-meaningful-paint
 # Analyzes metrics before the first meaningful paint
 
-node faro.js "https://www.google.com" -p=<new_path>
+node bin/faro.js "https://www.google.com" -p=<new_path>
 # Saves the report in a new folder
 ```
