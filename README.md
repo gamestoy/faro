@@ -1,6 +1,6 @@
 # Faro
 > Home-made [Lighthouse](https://developers.google.com/web/tools/lighthouse/). 
->Analyzes performance metrics collected using [Puppeteer](https://github.com/GoogleChrome/puppeteer).
+>Collects performance metrics using [Puppeteer](https://github.com/GoogleChrome/puppeteer).
 <p align="center">
   <img src="https://github.com/gamestoy/faro/blob/master/public/img/faro.jpg?raw=true" />
 </p>
