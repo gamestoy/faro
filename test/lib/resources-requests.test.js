@@ -67,5 +67,7 @@ test('timeline', async () => {
       responseStart: 100,
       responseEnd: 256,
     },
+    fromCache: false,
+    fromServiceWorker: false,
   });
 });

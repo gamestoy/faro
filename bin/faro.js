@@ -39,7 +39,7 @@ const path = argv.path ? argv.path : `${process.cwd()}/logs`;
 const cpu = argv.cpu;
 const device = argv.device;
 const network = argv.network;
-const headers = !Array.isArray(argv.header) ? [argv.header] : argv.header;
+const headers = argv.header && !Array.isArray(argv.header) ? [argv.header] : argv.header;
 
 const options = {
   before: before,
