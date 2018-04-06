@@ -41,7 +41,7 @@ test('timeline', async () => {
   expect(cssTrace).toEqual({
     url: 'https://ar.staticontent.com/hotels/search/public/css/pkg/eva-core.min.ddd45316.css',
     startTime: 1172,
-    duration: 256,
+    duration: 260,
     priority: 'VeryHigh',
     transferSize: 3692,
     decodedBodyLength: 13143,
