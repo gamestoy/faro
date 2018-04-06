@@ -6,9 +6,9 @@ const argv = require('yargs')
       alias: 'p',
       describe: 'provide a path to file',
     },
-    before: {
-      alias: 'b',
-      describe: 'the metric or mark name used as limit',
+    mark: {
+      alias: 'm',
+      describe: 'the metric or mark used as limit',
     },
     cpu: {
       alias: 'c',
@@ -34,7 +34,7 @@ const argv = require('yargs')
   }).argv;
 
 const url = argv._[0];
-const before = argv.before;
+const mark = argv.mark;
 const path = argv.path ? argv.path : `${process.cwd()}/logs`;
 const cpu = argv.cpu;
 const device = argv.device;
@@ -42,7 +42,7 @@ const network = argv.network;
 const headers = argv.header && !Array.isArray(argv.header) ? [argv.header] : argv.header;
 
 const options = {
-  before: before,
+  mark: mark,
   path: path,
   cpu: cpu,
   device: device,
