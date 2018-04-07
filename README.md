@@ -14,7 +14,7 @@ node bin/faro.js <url>
 ### Options
 ```sh
   --path, -p     Set a file path where the report will be saved
-  --before, -b   Select the performance metric, or custom mark, to set as time limit
+  --mark, -m     Select a Performance metric, created with [console.timeStamp](), as a time limit
   --cpu, -c      Set CPU throttling                                     
   --device, -d   Select desktop computer or mobile device
                            [options: "mobile", "desktop"]
