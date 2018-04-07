@@ -8,7 +8,7 @@ const argv = require('yargs')
     },
     mark: {
       alias: 'm',
-      describe: 'the metric or mark used as limit',
+      describe: 'a marker added to Chrome Performance tool',
     },
     cpu: {
       alias: 'c',
